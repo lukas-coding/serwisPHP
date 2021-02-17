@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lekton:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #404a4c;
+    color: white;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-family: 'Lekton', sans-serif;
+}
+
+h2 {
+    letter-spacing: 1px;
+}
+
+section {
+    width: 60%;
+    margin: 0 auto;
+
+}
+
+form {
+    margin-top: 10px;
+
+}
+
+legend {
+    font-size: 16px;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    font-family: 'Lekton', sans-serif;
+    margin-left: 10px;
+}
+
+label {
+    font-size: 18px;
+    font-family: 'Lekton', sans-serif;
+    padding: 5px;
+
+}
+
+input {
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 40px;
+    border: 1px solid white;
+
+}
+
+input:hover {
+    box-shadow: 0px 0px 30px 6px rgba(255, 255, 255, 0.2)
+}
+
+input:nth-last-of-type(1) {
+    margin-bottom: 10px;
+}
+
+
+
+select {
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    text-align-last: center;
+    border-radius: 40px;
+    border: 1px solid white;
+}
+
+select:hover {
+    box-shadow: 0px 0px 30px 6px rgba(255, 255, 255, 0.2)
+}
+
+option {
+    text-align: center;
+}
+
+
+.wrapper {
+    margin: 0 auto;
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1600px) {
+    .wrapper {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .wrapper {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .wrapper {
+        width: 60%;
+    }
+}
