@@ -13,7 +13,6 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 14px;
-
 }
 
 header {
@@ -38,11 +37,14 @@ a {
     font-size: 16px;
     padding: 10px;
     font-weight: 500;
+    transition: all 1s ease-in-out;
 }
 
 a:hover {
     border-bottom: 1px solid white;
 }
+
+
 
 .nav_area {
     list-style: none;
@@ -51,7 +53,7 @@ a:hover {
 
 .nav_area li {
     display: inline-block;
-    padding: 0 15px;
+    padding: 15px;
 
 }
 
@@ -80,16 +82,28 @@ label {
     font-size: 18px;
     font-family: 'Lekton', sans-serif;
     padding: 5px;
+    width: 50%;
+}
 
+.label_submit {
+    font-size: 18px;
+    color: white;
+    padding: 5px;
+    width: 50%;
+    background-color: teal;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
 }
 
 input {
     height: 30px;
-    width: 100%;
+    width: 50%;
     font-size: 14px;
     text-align: center;
     border-radius: 40px;
     border: 1px solid white;
+    transition: all .3s ease-in;
 
 }
 
@@ -103,11 +117,12 @@ input:nth-last-of-type(1) {
 
 select {
     height: 30px;
-    width: 100%;
+    width: 50%;
     font-size: 14px;
     text-align-last: center;
     border-radius: 40px;
     border: 1px solid white;
+    transition: all .3s ease-in;
 }
 
 select:hover {
@@ -116,6 +131,14 @@ select:hover {
 
 option {
     text-align: center;
+}
+
+textarea {
+    /* width: 100%; */
+    resize: none;
+    width: 100%;
+
+
 }
 
 button {
@@ -141,9 +164,10 @@ button:hover {
 
 .wrapper {
     margin: 0 auto;
-    width: 30%;
+    width: 40%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     min-height: 500px;
 

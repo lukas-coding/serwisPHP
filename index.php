@@ -9,7 +9,26 @@ require_once('src/View.php');
 
 const DEFAULT_ACTION = 'layout';
 
-$action = $_GET['action'] ?? DEFAULT_ACTION;
+$viewParams = [];
+
+
+$page = $_GET['action'] ?? DEFAULT_ACTION;
+
+
+
+dump($_GET);
+dump($page);
+
+$postData = $_POST ?? "";
+
+dump($_POST);
+
+// if ($action === 'create') {
+//     $page = 'create';
+// } else {
+//     $page = 'layout';
+// }
+
 
 $view = new View;
-$view->renderSite($action);
+$view->renderSite($page, $viewParams, $postData);

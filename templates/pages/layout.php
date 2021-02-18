@@ -15,10 +15,10 @@
         <nav class="nav_area">
             <ul>
                 <li><a href="/">Strona Główna</a></li>
-                <li><a href="?action=new">Nowa naprawa</a></li>
-                <li><a href="?action=last">Ostatnie naprawy</a></li>
-                <li><a href="?action=find">Szukaj naprawy</a></li>
-                <li><a href="?action=intime">Naprawy w trakcie</a></li>
+                <li><a href="/?action=new">Nowa naprawa</a></li>
+                <li><a href="/?action=addClient">Dodaj klienta</a></li>
+                <li><a href="/?action=find">Szukaj naprawy</a></li>
+                <li><a href="/?action=intime">Naprawy w trakcie</a></li>
             </ul>
         </nav>
     </header>
