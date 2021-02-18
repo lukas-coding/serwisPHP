@@ -30,13 +30,12 @@ h2 {
 
 section {
     width: 60%;
+    min-height: 90vh;
     margin: 0 auto;
-
 }
 
 form {
     margin-top: 10px;
-
 }
 
 legend {
@@ -72,8 +71,6 @@ input:nth-last-of-type(1) {
     margin-bottom: 10px;
 }
 
-
-
 select {
     height: 30px;
     width: 100%;
@@ -91,13 +88,13 @@ option {
     text-align: center;
 }
 
-
 .wrapper {
     margin: 0 auto;
     width: 30%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+
 }
 
 @media only screen and (max-width: 1600px) {
