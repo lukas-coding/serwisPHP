@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
-require_once("templates/pages/start.php");
-// require_once("templates/pages/layout.php");
-require_once("utils/debug.php");
+namespace App;
 
-$action = $_GET['action'] ?? null;
+require_once("src/utils/debug.php");
+require_once('src/View.php');
 
-dump($action);
+const DEFAULT_ACTION = 'layout';
+
+$action = $_GET['action'] ?? DEFAULT_ACTION;
+
+$view = new View;
+$view->renderSite($action);

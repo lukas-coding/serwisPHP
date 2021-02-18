@@ -16,12 +16,43 @@ body {
 
 }
 
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 h1 {
+    width: 100%;
     text-align: center;
     font-size: 36px;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     font-family: 'Lekton', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    font-weight: 500;
+}
+
+a:hover {
+    border-bottom: 1px solid white;
+}
+
+.nav_area {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.nav_area li {
+    display: inline-block;
+    padding: 0 15px;
+
 }
 
 h2 {
@@ -30,7 +61,6 @@ h2 {
 
 section {
     width: 60%;
-    min-height: 90vh;
     margin: 0 auto;
 }
 
@@ -88,13 +118,46 @@ option {
     text-align: center;
 }
 
+button {
+    background-color: whitesmoke;
+    height: 50px;
+    width: 150px;
+    margin: 15px;
+    cursor: pointer;
+    text-transform: lowercase;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid whitesmoke;
+    transition: all .3s ease-in-out;
+
+}
+
+button:hover {
+    box-shadow: 0px 0px 30px 6px rgba(255, 255, 255, 0.2);
+    background-color: #404a4c;
+    color: white;
+    border: none;
+}
+
 .wrapper {
     margin: 0 auto;
     width: 30%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    min-height: 500px;
 
+}
+
+.wrapper_menu {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50vh;
+    width: 25vw;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
 }
 
 @media only screen and (max-width: 1600px) {
