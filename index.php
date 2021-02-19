@@ -6,12 +6,11 @@ namespace App;
 
 use App\Controller\Controller;
 
-
+$dbconfig = require_once("config/config.php");
 require_once("src/Controller.php");
 require_once('src/View.php');
 require_once("src/utils/debug.php");
 
 
-
-$controller = new Controller($_GET, $_POST);
-$controller->run();
+Controller::initDbConfig($dbconfig);
+(new Controller($_GET, $_POST))->run();
