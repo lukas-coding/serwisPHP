@@ -184,6 +184,39 @@ button:hover {
     margin: 0 auto;
 }
 
+table,
+th,
+td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 15px;
+    color: black;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+
+
+
+
+
+
 @media only screen and (max-width: 1600px) {
     .wrapper {
         width: 40%;

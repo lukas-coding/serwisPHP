@@ -1,6 +1,15 @@
-<p>
-    <?php echo  "<b>$postData[name]</b><br>"; ?>
-    <?php echo  "<b>$postData[type]</b><br>"; ?>
-    <?php echo  "<b>$postData[permision]</b><br>"; ?>
-    <?php echo  "<b>$postData[sn]</b><br>"; ?>
-</p>
+<table style="width:100%">
+    <tr>
+        <th>Marka</th>
+        <th>Typ</th>
+        <th>Zgoda na utratę danych</th>
+        <th>Nr seryjny</th>
+    </tr>
+    <tr>
+        <td><?php echo  $postData['brand']; ?></td>
+        <td><?php echo  $postData['type']; ?></td>
+        <td><?php echo  $postData['permision']; ?></td>
+        <td><?php echo  $postData['serialnr']; ?></td>
+    </tr>
+
+</table>

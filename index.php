@@ -4,31 +4,14 @@ declare(strict_types=1);
 
 namespace App;
 
-require_once("src/utils/debug.php");
+use App\Controller\Controller;
+
+
+require_once("src/Controller.php");
 require_once('src/View.php');
-
-const DEFAULT_ACTION = 'layout';
-
-$viewParams = [];
-
-
-$page = $_GET['action'] ?? DEFAULT_ACTION;
+require_once("src/utils/debug.php");
 
 
 
-dump($_GET);
-dump($page);
-
-$postData = $_POST ?? "";
-
-dump($_POST);
-
-// if ($action === 'create') {
-//     $page = 'create';
-// } else {
-//     $page = 'layout';
-// }
-
-
-$view = new View;
-$view->renderSite($page, $viewParams, $postData);
+$controller = new Controller($_GET, $_POST);
+$controller->run();
