@@ -8,8 +8,8 @@ namespace App;
 class Database
 {
 
-    public function __construct($config)
+    public function __construct(array $config)
     {
-        dump($config);
+        dump($config['db']);
     }
 }

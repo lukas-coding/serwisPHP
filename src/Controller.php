@@ -2,38 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App;
 
 use App\View;
-use App\Database;
 
-
-require_once("src/Model/Database.php");
-
-
+require_once("src/View.php");
 
 class Controller
 {
     private $postData;
     private $getData;
-    private static $dbConfig = [];
+
     private const DEFAULT_ACTION = 'layout';
 
-    public static function initDbConfig(array $dbConfig): void
-    {
-        self::$dbConfig = $dbConfig;
-    }
+
 
     public function __construct(array $getData, array $postData)
     {
         $this->postData = $postData;
         $this->getData = $getData;
-
-        dump(self::$dbConfig);
-
-        $db = new Database(self::$dbConfig['db']);
     }
-
 
     public function run(): void
     {
