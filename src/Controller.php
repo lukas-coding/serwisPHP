@@ -12,10 +12,7 @@ class Controller
 {
     private $postData;
     private $getData;
-
     private const DEFAULT_ACTION = 'layout';
-
-
 
     public function __construct(array $getData, array $postData)
     {
