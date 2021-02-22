@@ -8,37 +8,49 @@ use PDO;
 use App\StorageException;
 use App\ConfigException;
 use PDOException;
+use Throwable;
 
 class Database
 {
+    private $conn;
 
     public function __construct(array $dbConfig)
     {
         $this->dbConfig = $dbConfig;
-
-
-        dump($dbConfig);
-
         try {
             $this->validateDbConfig($dbConfig);
-            $dsn = "mysql:dbname={$dbConfig['db']['database']};host={$dbConfig['db']['host']}";
-            $conn = new PDO(
-                $dsn,
-                $dbConfig['db']['user'],
-                $dbConfig['db']['password']
-            );
+            $this->connectionDb($dbConfig);
         } catch (PDOException $e) {
             throw new StorageException('Błąd!!! Nie można połączyć się z bazą danych.');
         }
     }
 
+    public function newRepair(array $data): void
+    {
+        try {
+            echo "Tworzymy coś tam";
+        } catch (Throwable $e) {
+            echo "$e";
+        }
+    }
+
+    private function connectionDb(array $c): void
+    {
+        $dsn = "mysql:dbname={$c['database']};host={$c['host']}";
+        $this->conn = new PDO(
+            $dsn,
+            $c['user'],
+            $c['password']
+        );
+    }
+
     private function validateDbConfig(array $c): void
     {
         if (
-            empty($c['db']['host'])
-            || empty($c['db']['database'])
-            || empty($c['db']['user'])
-            || empty($c['db']['password'])
+            empty($c['host'])
+            || empty($c['database'])
+            || empty($c['user'])
+            || empty($c['password'])
         ) {
             throw new ConfigException('Błąd Konfiguracji Serwera');
         }

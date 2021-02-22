@@ -1,5 +1,5 @@
 <h2>nowa naprawa</h2>
-<form action="/?action=create" method="POST">
+<form method="POST">
     <fieldset>
         <legend>Nowy sprzęt</legend>
         <div class="wrapper">
@@ -15,8 +15,8 @@
                 <option value="Monitor">Monitor</option>
                 <option value="Inny">Inny...</option>
             </select>
-            <label for="permision">Zachować dane:</label>
-            <select name="permision" id="permision">
+            <label for="datasave">Zachować dane:</label>
+            <select name="datasave" id="permision">
                 <option value="Tak" selected>Tak</option>
                 <option value="Nie">Nie</option>
             </select>

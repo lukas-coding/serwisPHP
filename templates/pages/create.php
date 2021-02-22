@@ -8,7 +8,7 @@
     <tr>
         <td><?php echo  $postData['brand']; ?></td>
         <td><?php echo  $postData['type']; ?></td>
-        <td><?php echo  $postData['permision']; ?></td>
+        <td><?php echo  $postData['datasave']; ?></td>
         <td><?php echo  $postData['serialnr']; ?></td>
     </tr>
 
