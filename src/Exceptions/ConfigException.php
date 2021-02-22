@@ -6,7 +6,7 @@ namespace App;
 
 use App\AppException;
 
-require_once('AppException.php');
+require_once("AppException.php");
 
 class ConfigException extends AppException
 {
