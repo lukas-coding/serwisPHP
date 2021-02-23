@@ -1,5 +1,5 @@
 <h2>dodaj klienta</h2>
-<form action="/?action=description" method="POST">
+<form action="/?action=addClient" method="POST">
     <fieldset>
         <legend>nowy klient</legend>
         <div class="wrapper">
@@ -11,7 +11,7 @@
             <input type="e-mail" name="email" id="email">
             <label for="phone">Nr telefonu:</label>
             <input type="tel" name="phone" id="phone">
-            <input type="submit" value="Dalej" class="label_submit">
+            <input type="submit" value="Dodaj" class="label_submit">
         </div>
     </fieldset>
 </form>

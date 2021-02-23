@@ -28,9 +28,23 @@ class Database
     public function newRepair(array $data): void
     {
         try {
-            echo "Tworzymy coś tam";
-        } catch (Throwable $e) {
-            echo "$e";
+            dump($data);
+            $created = date('Y-m-d H:i:s');
+            $query = "INSERT INTO hardware(brand, type, datasave, serialnr, created) VALUES('$data[brand]','$data[type]','$data[datasave]','$data[serialnr]', '$created')";
+            $this->conn->exec($query);
+        } catch (PDOException $e) {
+            dump($e);
+        }
+    }
+
+    public function addCustomer(array $data): void
+    {
+        try {
+            dump($data);
+            $query = "INSERT INTO customer(fname, lname, email, phonenr) VALUES('$data[fname]','$data[lname]','$data[email]',$data[phone])";
+            $this->conn->exec($query);
+        } catch (PDOException $e) {
+            dump($e);
         }
     }
 
@@ -40,7 +54,8 @@ class Database
         $this->conn = new PDO(
             $dsn,
             $c['user'],
-            $c['password']
+            $c['password'],
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
         );
     }
 

@@ -6,6 +6,7 @@ namespace App;
 
 use App\View;
 use App\Database;
+use Throwable;
 
 require_once("src/View.php");
 require_once("src/Model/Database.php");
@@ -30,20 +31,36 @@ class Controller
 
     public function run(): void
     {
-        $page = $this->getData['action'] ?? self::DEFAULT_ACTION;
-        dump($page);
+
+        $page = $this->action();
         $viewParams = [];
         $this->view->renderSite($page, $viewParams, $this->postData);
 
 
         switch ($page) {
             case 'new':
-
-                if (!empty($this->postData)) {
-                    $this->db->newRepair($this->postData);
-                    dump($this->postData);
+                try {
+                    if (!empty($this->postData)) {
+                        $this->db->newRepair($this->postData);
+                    }
+                } catch (Throwable $e) {
+                    echo $e;
+                }
+                break;
+            case 'addClient':
+                try {
+                    if (!empty($this->postData)) {
+                        $this->db->addCustomer($this->postData);
+                    }
+                } catch (Throwable $e) {
+                    echo $e;
                 }
         }
+    }
+
+    public function action(): string
+    {
+        return $this->getData['action'] ?? self::DEFAULT_ACTION;
     }
 
     public static function initConfiguration(array $config)
