@@ -14,6 +14,7 @@ class Database
 {
     private $conn;
 
+
     public function __construct(array $dbConfig)
     {
         $this->dbConfig = $dbConfig;
@@ -28,9 +29,9 @@ class Database
     public function newRepair(array $data): void
     {
         try {
-            dump($data);
+
             $created = date('Y-m-d H:i:s');
-            $query = "INSERT INTO hardware(brand, type, datasave, serialnr, created) VALUES('$data[brand]','$data[type]','$data[datasave]','$data[serialnr]', '$created')";
+            $query = "INSERT INTO hardware VALUES(NULL,'$data[brand]','$data[type]','$data[datasave]','$data[serialnr]', '$created')";
             $this->conn->exec($query);
         } catch (PDOException $e) {
             dump($e);
@@ -40,8 +41,12 @@ class Database
     public function addCustomer(array $data): void
     {
         try {
-            dump($data);
-            $query = "INSERT INTO customer(fname, lname, email, phonenr) VALUES('$data[fname]','$data[lname]','$data[email]',$data[phone])";
+            $last_id = ("SELECT max(id) FROM hardware");
+            $result = $this->conn->prepare($last_id);
+            $result->execute();
+            $last_id = (int)$result->fetchColumn();
+
+            $query = "INSERT INTO customer VALUES(NULL,$last_id,'$data[fname]','$data[lname]','$data[email]',$data[phone])";
             $this->conn->exec($query);
         } catch (PDOException $e) {
             dump($e);
