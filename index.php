@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App;
 
 use App\Controller;
-use App\Database;
 use Throwable;
 
 require_once("src/Exceptions/AppException.php");

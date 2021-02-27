@@ -1,5 +1,5 @@
 <h2>nowa naprawa</h2>
-<form method="POST">
+<form action="/?action=new" method="POST">
     <fieldset>
         <legend>Nowy sprzęt</legend>
         <div class="wrapper">
@@ -22,7 +22,8 @@
             </select>
             <label for="serialnr">S/N:</label>
             <input type="text" name="serialnr" id="serialnr">
-            <input type="submit" value="Dalej" class="label_submit">
+            <input type="submit" value="Zapisz" class="label_submit">
         </div>
     </fieldset>
 </form>
+<a href="?action=addClient" class="btnLink"><Button>Dalej</Button></a>

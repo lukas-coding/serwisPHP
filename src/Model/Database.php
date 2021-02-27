@@ -41,16 +41,21 @@ class Database
     public function addCustomer(array $data): void
     {
         try {
-            $last_id = ("SELECT max(id) FROM hardware");
-            $result = $this->conn->prepare($last_id);
-            $result->execute();
-            $last_id = (int)$result->fetchColumn();
 
-            $query = "INSERT INTO customer VALUES(NULL,$last_id,'$data[fname]','$data[lname]','$data[email]',$data[phone])";
+            $lastId = $this->lastId();
+            $query = "INSERT INTO customer VALUES(NULL,$lastId,'$data[fname]','$data[lname]','$data[email]',$data[phone])";
             $this->conn->exec($query);
         } catch (PDOException $e) {
             dump($e);
         }
+    }
+
+    private function lastId()
+    {
+        $last_id = ("SELECT max(id) FROM hardware");
+        $result = $this->conn->prepare($last_id);
+        $result->execute();
+        return (int)$result->fetchColumn();
     }
 
     private function connectionDb(array $c): void
