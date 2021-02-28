@@ -25,6 +25,7 @@
     <section>
         <?php require_once("templates/pages/$page.php"); ?>
     </section>
+    <script src="/public/main.js"></script>
 </body>
 
 </html>

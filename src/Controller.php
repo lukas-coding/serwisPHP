@@ -34,9 +34,6 @@ class Controller
 
         $page = $this->action();
         $viewParams = [];
-        $this->view->renderSite($page, $viewParams, $this->postData);
-
-
         switch ($page) {
             case 'new':
                 try {
@@ -58,9 +55,13 @@ class Controller
                 }
                 break;
             default:
-                $page = 'layout';
-                dump($this->db->showList());
+
+                $viewParams = [
+                    'client' => $this->db->showList()
+                ];
         }
+
+        $this->view->renderSite($page, $viewParams, $this->postData);
     }
 
     public function action(): string

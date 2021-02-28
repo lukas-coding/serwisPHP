@@ -56,7 +56,7 @@ class Database
             $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id";
             $result = $this->conn->prepare($query);
             $result->execute();
-            return $result->fetchAll();
+            return $result->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             dump($e);
         }
