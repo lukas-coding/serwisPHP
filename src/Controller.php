@@ -42,6 +42,7 @@ class Controller
                 try {
                     if (!empty($this->postData)) {
                         $this->db->newRepair($this->postData);
+                        header("Location: /?action=addClient");
                     }
                 } catch (Throwable $e) {
                     echo $e;
@@ -55,6 +56,10 @@ class Controller
                 } catch (Throwable $e) {
                     echo $e;
                 }
+                break;
+            default:
+                $page = 'layout';
+                dump($this->db->showList());
         }
     }
 

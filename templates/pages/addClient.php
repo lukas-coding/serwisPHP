@@ -11,7 +11,7 @@
             <input type="e-mail" name="email" id="email">
             <label for="phone">Nr telefonu:</label>
             <input type="tel" name="phone" id="phone">
-            <input type="submit" value="Dodaj" class="label_submit">
+            <input type="submit" value="Zapisz" class="label_submit">
         </div>
     </fieldset>
 </form>

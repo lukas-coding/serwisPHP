@@ -132,26 +132,34 @@ textarea {
 }
 
 button {
+    display: block;
     background-color: whitesmoke;
-    height: 50px;
-    width: 150px;
-    margin: 20px;
+    height: 40px;
+    width: 120px;
     cursor: pointer;
-    text-transform: lowercase;
-    font-size: 20px;
-    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-radius: 15px;
     border: 1px solid whitesmoke;
     transition: all .3s ease-in-out;
-
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .btnLink {
-
-    border: none;
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    left: 80%;
+    bottom: 0;
+    height: 40px;
+    width: 120px;
 }
 
 .btnLink:hover {
-    border-bottom: 2px solid red;
+    border-bottom: none;
 }
 
 button:hover {

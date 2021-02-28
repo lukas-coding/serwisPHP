@@ -4,7 +4,7 @@
         <legend>Nowy sprzęt</legend>
         <div class="wrapper">
             <label for="brand">Nazwa:</label>
-            <input type="text" name="brand" id="brand">
+            <input type="text" name="brand" id="brand" required>
             <label for="type">Typ:</label>
             <select name="type" id="type">
                 <option value="Laptop">Laptop</option>
@@ -26,4 +26,3 @@
         </div>
     </fieldset>
 </form>
-<a href="?action=addClient" class="btnLink"><Button>Dalej</Button></a>

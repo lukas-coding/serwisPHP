@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serwis Komputerowy</title>
-    <link rel="stylesheet" href="/./public/style.css">
+    <link rel="stylesheet" href="/public/main.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
                 <li><a href="/?action=new">Nowa naprawa</a></li>
                 <li><a href="/?action=addClient">Dodaj klienta</a></li>
                 <li><a href="/?action=find">Szukaj naprawy</a></li>
-                <li><a href="/?action=intime">Naprawy w trakcie</a></li>
+                <li><a href="/?action=create">Naprawy w trakcie</a></li>
             </ul>
         </nav>
     </header>
