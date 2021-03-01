@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serwis Komputerowy</title>
+    <script src="/public/main.js" defer></script>
     <link rel="stylesheet" href="/public/main.css">
 </head>
 
@@ -25,7 +26,6 @@
     <section>
         <?php require_once("templates/pages/$page.php"); ?>
     </section>
-    <script src="/public/main.js"></script>
 </body>
 
 </html>
