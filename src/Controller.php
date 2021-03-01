@@ -49,6 +49,7 @@ class Controller
                 try {
                     if (!empty($this->postData)) {
                         $this->db->addCustomer($this->postData);
+                        header("Location: /?action=create");
                     }
                 } catch (Throwable $e) {
                     echo $e;

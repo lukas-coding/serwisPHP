@@ -8,12 +8,10 @@ use PDO;
 use App\StorageException;
 use App\ConfigException;
 use PDOException;
-use Throwable;
 
 class Database
 {
     private $conn;
-
 
     public function __construct(array $dbConfig)
     {
@@ -29,7 +27,6 @@ class Database
     public function newRepair(array $data): void
     {
         try {
-
             $created = date('Y-m-d H:i:s');
             $query = "INSERT INTO hardware VALUES(NULL,'$data[brand]','$data[type]','$data[datasave]','$data[serialnr]', '$created')";
             $this->conn->exec($query);
@@ -42,9 +39,21 @@ class Database
     {
         try {
 
-            $lastId = $this->lastId();
-            $query = "INSERT INTO customer VALUES(NULL,$lastId,'$data[fname]','$data[lname]','$data[email]',$data[phone])";
-            $this->conn->exec($query);
+            if (isset($data['email'])) {
+                $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+                var_dump($email);
+                if (empty($email)) {
+                    $_SESSION['given_mail'] = $data['email'];
+                    dump($data['email']);
+                    header('Location: /?action=addClient');
+                    exit('cos poszło nie tak niepoprawny email');
+                } else {
+                    $lastId = $this->lastId();
+                    $query = "INSERT INTO customer VALUES(NULL,$lastId,'$data[fname]','$data[lname]','$data[email]',$data[phone])";
+                    $result = $this->conn->prepare($query);
+                    $result->execute();
+                }
+            }
         } catch (PDOException $e) {
             dump($e);
         }
@@ -53,7 +62,7 @@ class Database
     public function showList(): array
     {
         try {
-            $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id";
+            $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr,hardware.id, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr, hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id ORDER BY hardware.id DESC";
             $result = $this->conn->prepare($query);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
