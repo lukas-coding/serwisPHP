@@ -27,25 +27,24 @@ class Database
     public function newRepair(array $data): void
     {
         try {
-            $created = date('Y-m-d H:i:s');
-            $query = "INSERT INTO hardware VALUES(NULL,'$data[brand]','$data[type]','$data[datasave]','$data[serialnr]', '$created')";
+            $created = date('Y-m-d');
+            $query = "INSERT INTO hardware VALUES(NULL,'$data[brand]','$data[type]','$data[datasave]','$data[serialnr]',NULL,'$created')";
             $this->conn->exec($query);
         } catch (PDOException $e) {
             dump($e);
+            exit();
         }
     }
 
     public function addCustomer(array $data): void
     {
+
+
         try {
 
             if (isset($data['email'])) {
                 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-                var_dump($email);
                 if (empty($email)) {
-                    $_SESSION['given_mail'] = $data['email'];
-                    dump($data['email']);
-                    header('Location: /?action=addClient');
                     exit('cos poszło nie tak niepoprawny email');
                 } else {
                     $lastId = $this->lastId();
@@ -56,6 +55,21 @@ class Database
             }
         } catch (PDOException $e) {
             dump($e);
+            exit();
+        }
+    }
+
+    public function addDescription(array $data): void
+    {
+        try {
+            $id = $this->lastId();
+            dump($data['description']);
+            $query = "UPDATE hardware SET description = '$data[description]' WHERE id = $id";
+            $result = $this->conn->prepare($query);
+            $result->execute();
+        } catch (PDOException $e) {
+            echo $e;
+            exit();
         }
     }
 

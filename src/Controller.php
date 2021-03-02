@@ -33,12 +33,22 @@ class Controller
     {
 
         $page = $this->action();
-        $viewParams = [];
+        // $viewParams = [];
         switch ($page) {
             case 'new':
                 try {
                     if (!empty($this->postData)) {
                         $this->db->newRepair($this->postData);
+                        header("Location: /?action=description");
+                    }
+                } catch (Throwable $e) {
+                    echo $e;
+                }
+                break;
+            case 'description':
+                try {
+                    if (!empty($this->postData)) {
+                        $this->db->addDescription($this->postData);
                         header("Location: /?action=addClient");
                     }
                 } catch (Throwable $e) {
@@ -62,7 +72,7 @@ class Controller
                 ];
         }
 
-        $this->view->renderSite($page, $viewParams, $this->postData);
+        $this->view->renderSite($page, $viewParams ?? [], $this->postData);
     }
 
     public function action(): string

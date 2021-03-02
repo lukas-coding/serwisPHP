@@ -12,7 +12,7 @@
         <th>Data przyjęcia</th>
     </tr>
     <?php $year = date('Y');
-    foreach ($viewParams['client'] as $client) : ?>
+    foreach ($viewParams['client'] ?? [] as $client) : ?>
         <tr>
             <td><?= $client['fname'] ?></td>
             <td><?= $client['lname'] ?></td>

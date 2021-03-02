@@ -17,6 +17,7 @@
             <ul>
                 <li><a href="/">Strona Główna</a></li>
                 <li><a href="/?action=new">Nowa naprawa</a></li>
+                <li><a href="/?action=description">Opis</a></li>
                 <li><a href="/?action=addClient">Dodaj klienta</a></li>
                 <li><a href="/?action=find">Szukaj naprawy</a></li>
                 <li><a href="/?action=create">Naprawy w trakcie</a></li>

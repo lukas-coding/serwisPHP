@@ -22,7 +22,7 @@
             </select>
             <label for="serialnr">S/N:</label>
             <input type="text" name="serialnr" id="serialnr">
-            <input type="submit" value="Zapisz" class="label_submit" onclick="checkInputBrand()">
+            <input type="submit" value="Dalej" class="label_submit" onclick="checkInputBrand()">
         </div>
     </fieldset>
 </form>
