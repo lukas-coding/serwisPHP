@@ -7,7 +7,12 @@ namespace App;
 use PDO;
 use App\StorageException;
 use App\ConfigException;
+use App\NotFoundException;
 use PDOException;
+
+
+require_once("src/Exceptions/NotFoundException.php");
+require_once("src/Exceptions/StorageException.php");
 
 class Database
 {
@@ -21,6 +26,7 @@ class Database
             $this->connectionDb($dbConfig);
         } catch (PDOException $e) {
             throw new StorageException('Błąd!!! Nie można połączyć się z bazą danych.');
+            exit();
         }
     }
 
@@ -28,7 +34,7 @@ class Database
     {
         try {
             $created = date('Y-m-d');
-            $query = "INSERT INTO hardware VALUES(NULL,'$data[brand]','$data[type]','$data[datasave]','$data[serialnr]',NULL,'$created')";
+            $query = "INSERT INTO hardware VALUES(NULL,'$data[brand]','$data[type]','$data[datasave]','$data[serialnr]',NULL,NULL,'$created')";
             $this->conn->exec($query);
         } catch (PDOException $e) {
             dump($e);
@@ -38,10 +44,7 @@ class Database
 
     public function addCustomer(array $data): void
     {
-
-
         try {
-
             if (isset($data['email'])) {
                 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
                 if (empty($email)) {
@@ -64,7 +67,7 @@ class Database
         try {
             $id = $this->lastId();
             dump($data['description']);
-            $query = "UPDATE hardware SET description = '$data[description]' WHERE id = $id";
+            $query = "UPDATE hardware SET description = '$data[description]', cost = '$data[cost]' WHERE id = $id";
             $result = $this->conn->prepare($query);
             $result->execute();
         } catch (PDOException $e) {
@@ -76,7 +79,7 @@ class Database
     public function showList(): array
     {
         try {
-            $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr,hardware.id, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr, hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id ORDER BY hardware.id DESC";
+            $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr,hardware.id, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr,hardware.cost, hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id ORDER BY hardware.id DESC";
             $result = $this->conn->prepare($query);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -85,10 +88,28 @@ class Database
         }
     }
 
+    public function showCustomer(int $id): array
+    {
+        try {
+            $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr,hardware.id, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr,hardware.description,hardware.cost, hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id WHERE id = $id ORDER BY hardware.id DESC";
+            $result = $this->conn->prepare($query);
+            $result->execute();
+            $customer = $result->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            dump($e);
+        }
+
+        if (!$customer) {
+            throw new NotFoundException('Nie ma takiego klienta');
+        }
+
+        return $customer;
+    }
+
     private function lastId()
     {
-        $last_id = ("SELECT max(id) FROM hardware");
-        $result = $this->conn->prepare($last_id);
+        $lastId = ("SELECT max(id) FROM hardware");
+        $result = $this->conn->prepare($lastId);
         $result->execute();
         return (int)$result->fetchColumn();
     }

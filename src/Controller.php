@@ -33,7 +33,7 @@ class Controller
     {
 
         $page = $this->action();
-        // $viewParams = [];
+
         switch ($page) {
             case 'new':
                 try {
@@ -65,8 +65,18 @@ class Controller
                     echo $e;
                 }
                 break;
+            case 'show':
+                $customerId = (int)$this->getData['id'];
+                try {
+                    $this->db->showCustomer($customerId);
+                    $viewParams = [
+                        'customer' => $this->db->showCustomer($customerId)
+                    ];
+                } catch (NotFoundException $e) {
+                    echo "<h1>" . $e->getMessage() . "</h1>";
+                }
+                break;
             default:
-
                 $viewParams = [
                     'client' => $this->db->showList()
                 ];

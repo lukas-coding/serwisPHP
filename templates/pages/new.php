@@ -19,6 +19,7 @@
             <select name="datasave" id="permision">
                 <option value="Tak" selected>Tak</option>
                 <option value="Nie">Nie</option>
+                <option value="Nie dotyczy">Nie dotyczy</option>
             </select>
             <label for="serialnr">S/N:</label>
             <input type="text" name="serialnr" id="serialnr">

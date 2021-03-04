@@ -44,6 +44,28 @@ a:hover {
     border-bottom: 1px solid white;
 }
 
+.aShow {
+    color: black;
+
+}
+
+.aShow:hover {
+    border-bottom: none;
+
+}
+
+.tdShow {
+    color: black;
+    background-color: cadetblue;
+    cursor: pointer;
+    transition: opacity .3s ease-in;
+
+}
+
+.tdShow:hover {
+    opacity: .8;
+}
+
 
 
 .nav_area {
@@ -55,6 +77,29 @@ a:hover {
     display: inline-block;
     padding: 15px;
 
+}
+
+.showDiv>h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.showDescription {
+    width: 50%;
+    height: 200px;
+    background-color: #eee;
+    margin: 10px auto;
+    border: 1px solid black;
+}
+
+.showDescription>p {
+    text-align: center;
+    font-size: 26px;
+    color: black;
+    padding: 20px;
 }
 
 h2 {
@@ -194,6 +239,7 @@ button:hover {
 table,
 th,
 td {
+
     border: 1px solid white;
     border-collapse: collapse;
     text-align: center;

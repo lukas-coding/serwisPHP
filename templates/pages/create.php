@@ -7,9 +7,11 @@
         <th>Marka</th>
         <th>Typ</th>
         <th>Zgoda na utratę danych</th>
+        <th>Koszt naprawy</th>
         <th>Nr seryjny</th>
         <th>Nr naprawy</th>
         <th>Data przyjęcia</th>
+        <th>Opcje</th>
     </tr>
     <?php $year = date('Y');
     foreach ($viewParams['client'] ?? [] as $client) : ?>
@@ -21,9 +23,13 @@
             <td><?= $client['brand'] ?></td>
             <td><?= $client['type'] ?></td>
             <td><?= $client['datasave'] ?></td>
+            <td><?= $client['cost'] ?></td>
             <td><?= $client['serialnr'] ?></td>
             <td><?= $client['id'] . "/$year" ?></td>
             <td><?= $client['created'] ?></td>
+            <td class="tdShow">
+                <a href="/?action=show&id=<?php echo (int)$client['id']; ?>" class="aShow">Pokaż</a>
+            </td>
         </tr>
     <?php endforeach ?>
 </table>
