@@ -25,7 +25,7 @@ header {
 h1 {
     width: 100%;
     text-align: center;
-    font-size: 36px;
+    font-size: 42px;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     font-family: 'Lekton', sans-serif;
@@ -66,8 +66,6 @@ a:hover {
     opacity: .8;
 }
 
-
-
 .nav_area {
     list-style: none;
     margin-bottom: 20px;
@@ -79,15 +77,31 @@ a:hover {
 
 }
 
-.showDiv>h2 {
+.description {
+    width: 75%;
+    border: 1px solid white;
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.description__wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.descritpion__header {
+    font-family: 'Lekton', sans-serif;
+    font-size: 30px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 5px;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
-.showDescription {
+.description__show {
     width: 50%;
     height: 200px;
     background-color: #eee;
@@ -95,11 +109,40 @@ a:hover {
     border: 1px solid black;
 }
 
-.showDescription>p {
+.description__text {
     text-align: center;
     font-size: 26px;
     color: black;
     padding: 20px;
+}
+
+.description__link {
+    padding: 0;
+    cursor: unset;
+}
+
+.description__link:hover {
+    border-bottom: none;
+}
+
+.description__btn {
+    margin: 10px 5px 20px 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 170px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    background-color: cadetblue;
+    transition: opacity .3s ease-in;
+}
+
+.description__btn:hover {
+    opacity: .8;
+}
+
+.description__btn--red {
+    background-color: darkred;
 }
 
 h2 {
@@ -172,46 +215,6 @@ textarea {
     /* width: 100%; */
     resize: none;
     width: 100%;
-
-
-}
-
-button {
-    display: block;
-    background-color: whitesmoke;
-    height: 40px;
-    width: 120px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: 16px;
-    border-radius: 15px;
-    border: 1px solid whitesmoke;
-    transition: all .3s ease-in-out;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.btnLink {
-    display: block;
-    position: relative;
-    margin-top: 10px;
-    left: 80%;
-    bottom: 0;
-    height: 40px;
-    width: 120px;
-}
-
-.btnLink:hover {
-    border-bottom: none;
-}
-
-button:hover {
-    box-shadow: 0px 0px 30px 6px rgba(255, 255, 255, 0.2);
-    background-color: #404a4c;
-    color: white;
-    border: none;
 }
 
 .wrapper {
@@ -264,12 +267,6 @@ th {
     background-color: black;
     color: white;
 }
-
-
-
-
-
-
 
 @media only screen and (max-width: 1600px) {
     .wrapper {

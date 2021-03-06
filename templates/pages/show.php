@@ -12,26 +12,41 @@
         <th>Nr naprawy</th>
         <th>Data przyjęcia</th>
     </tr>
-    <?php $customer = $viewParams['customer'];
-
+    <?php $customer = $viewParams['customer'] ?? [];
     $year = date('Y'); ?>
-    <tr>
-        <td><?= $customer['fname'] ?></td>
-        <td><?= $customer['lname'] ?></td>
-        <td><?= $customer['email'] ?></td>
-        <td><?= $customer['phonenr'] ?></td>
-        <td><?= $customer['brand'] ?></td>
-        <td><?= $customer['type'] ?></td>
-        <td><?= $customer['datasave'] ?></td>
-        <td><?= $customer['cost'] ?></td>
-        <td><?= $customer['serialnr'] ?></td>
-        <td><?= $customer['id'] . "/$year" ?></td>
-        <td><?= $customer['created'] ?></td>
-    </tr>
+    <?php if ($customer) : ?>
+        <tr>
+            <td><?= $customer['fname'] ?></td>
+            <td><?= $customer['lname'] ?></td>
+            <td><?= $customer['email'] ?></td>
+            <td><?= $customer['phonenr'] ?></td>
+            <td><?= $customer['brand'] ?></td>
+            <td><?= $customer['type'] ?></td>
+            <td><?= $customer['datasave'] ?></td>
+            <td><?= $customer['cost'] ?></td>
+            <td><?= $customer['serialnr'] ?></td>
+            <td><?= $customer['id'] . "/$year" ?></td>
+            <td><?= $customer['created'] ?></td>
+        </tr>
+    <?php endif; ?>
 </table>
-<div class="showDiv">
-    <h2>Opis uszkodzenia:</h2>
-    <div class="showDescription">
-        <p><?= $customer['description'] ?></p>
+<section class="description">
+    <div class="description__wrapper">
+        <h2 class="descritpion__header">Opis uszkodzenia:</h2>
+        <div class="description__show">
+            <p class="description__text"><?= $customer['description'] ?></p>
+        </div>
     </div>
-</div>
+    <a href="?action=create" class="description__link">
+        <button class="description__btn">Powrót do Listy</button>
+    </a>
+    <a href="#" class="description__link">
+        <button class="description__btn">Drukuj</button>
+    </a>
+    <a href="#" class="description__link">
+        <button class="description__btn">Edytuj</button>
+    </a>
+    <a href="#" class="description__link">
+        <button class="description__btn description__btn--red">Usuń</button>
+    </a>
+</section>

@@ -24,5 +24,5 @@ try {
 } catch (AppException $e) {
     echo '<h1 style="text-align: center">' . $e->getMessage() . '</h1>';
 } catch (Throwable $e) {
-    echo "<h1>Wystąpił błąd w aplikacji</h1>";
+    echo '<h1 style="text-align: center">Wystąpił błąd w aplikacji</h1>';
 }

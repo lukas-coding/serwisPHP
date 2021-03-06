@@ -66,7 +66,6 @@ class Database
     {
         try {
             $id = $this->lastId();
-            dump($data['description']);
             $query = "UPDATE hardware SET description = '$data[description]', cost = '$data[cost]' WHERE id = $id";
             $result = $this->conn->prepare($query);
             $result->execute();
@@ -79,12 +78,13 @@ class Database
     public function showList(): array
     {
         try {
-            $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr,hardware.id, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr,hardware.cost, hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id ORDER BY hardware.id DESC";
+            $query = "SELECT customer.fname, customer.lname,hardware.id, hardware.brand, hardware.type,hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id ORDER BY hardware.id DESC";
             $result = $this->conn->prepare($query);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             dump($e);
+            exit();
         }
     }
 
@@ -97,6 +97,7 @@ class Database
             $customer = $result->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             dump($e);
+            exit();
         }
 
         if (!$customer) {
