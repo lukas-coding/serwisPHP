@@ -1,29 +1,29 @@
-<h2>nowa naprawa</h2>
-<form action="/?action=new" method="POST" id="form">
-    <fieldset>
-        <legend>Nowy sprzęt</legend>
-        <div class="wrapper">
-            <label for="brand">Nazwa:</label>
-            <input type="text" name="brand" id="brand" required>
-            <label for="type">Typ:</label>
-            <select name="type" id="type">
-                <option value="Laptop">Laptop</option>
-                <option value="PC" selected>PC</option>
-                <option value="Telefon">Telefon</option>
-                <option value="Tablet">Tablet</option>
-                <option value="Drukarka">Drukarka</option>
-                <option value="Monitor">Monitor</option>
-                <option value="Inny">Inny...</option>
+<h2 class="main__h2">nowa naprawa</h2>
+<form class="form" action="/?action=new" method="POST" id="form">
+    <fieldset class="form__fieldset">
+        <legend class="form__legend">Nowy sprzęt</legend>
+        <div class="form__wrapper">
+            <label class="form__label" for="brand">Nazwa:</label>
+            <input class="form__input" type="text" name="brand" id="brand" required>
+            <label class="form__label" for="type">Typ:</label>
+            <select class="form__select" name="type" id="type">
+                <option class="form__option" value="Laptop">Laptop</option>
+                <option class="form__option" value="PC" selected>PC</option>
+                <option class="form__option" value="Telefon">Telefon</option>
+                <option class="form__option" value="Tablet">Tablet</option>
+                <option class="form__option" value="Drukarka">Drukarka</option>
+                <option class="form__option" value="Monitor">Monitor</option>
+                <option class="form__option" value="Inny">Inny...</option>
             </select>
-            <label for="datasave">Zachować dane:</label>
-            <select name="datasave" id="permision">
-                <option value="Tak" selected>Tak</option>
-                <option value="Nie">Nie</option>
-                <option value="Nie dotyczy">Nie dotyczy</option>
+            <label class="form__label" for="datasave">Zachować dane:</label>
+            <select class="form__select" name="datasave" id="permision">
+                <option class="form__option" value="Tak" selected>Tak</option>
+                <option class="form__option" value="Nie">Nie</option>
+                <option class="form__option" value="Nie dotyczy">Nie dotyczy</option>
             </select>
-            <label for="serialnr">S/N:</label>
-            <input type="text" name="serialnr" id="serialnr">
-            <input type="submit" value="Dalej" class="label_submit" onclick="checkInputBrand()">
+            <label class="form__label" for="serialnr">S/N:</label>
+            <input class="form__input" type="text" name="serialnr" id="serialnr">
+            <input class="form__input form__input--submit" type="submit" value="Dalej" onclick="checkInputBrand()">
         </div>
     </fieldset>
 </form>

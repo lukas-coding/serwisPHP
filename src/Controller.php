@@ -74,6 +74,19 @@ class Controller
                     ];
                 } catch (NotFoundException $e) {
                     echo "<h1>" . $e->getMessage() . "</h1>";
+                    exit();
+                }
+                break;
+            case 'edit':
+                $customerId = (int)$this->getData['id'];
+                try {
+                    $this->db->showCustomer($customerId);
+                    $viewParams = [
+                        'customer' => $this->db->showCustomer($customerId)
+                    ];
+                } catch (NotFoundException $e) {
+                    echo "<h1>" . $e->getMessage() . "</h1>";
+                    exit();
                 }
                 break;
             default:

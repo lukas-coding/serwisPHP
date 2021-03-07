@@ -1,24 +1,24 @@
-<table style="width:100%">
-    <tr>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Marka</th>
-        <th>Typ</th>
-        <th>Nr naprawy</th>
-        <th>Data przyjęcia</th>
-        <th>Opcje</th>
+<table class="table">
+    <tr class="table__row">
+        <th class="table__header">Imię</th>
+        <th class="table__header">Nazwisko</th>
+        <th class="table__header">Marka</th>
+        <th class="table__header">Typ</th>
+        <th class="table__header">Nr naprawy</th>
+        <th class="table__header">Data przyjęcia</th>
+        <th class="table__header">Opcje</th>
     </tr>
     <?php $year = date('Y');
     foreach ($viewParams['client'] ?? [] as $client) : ?>
-        <tr>
-            <td><?= $client['fname'] ?></td>
-            <td><?= $client['lname'] ?></td>
-            <td><?= $client['brand'] ?></td>
-            <td><?= $client['type'] ?></td>
-            <td><?= $client['id'] . "/$year" ?></td>
-            <td><?= $client['created'] ?></td>
-            <td class="tdShow">
-                <a href="/?action=show&id=<?php echo (int)$client['id']; ?>" class="aShow">Pokaż</a>
+        <tr class="table__row">
+            <td class="table__data"><?= $client['fname'] ?></td>
+            <td class="table__data"><?= $client['lname'] ?></td>
+            <td class="table__data"><?= $client['brand'] ?></td>
+            <td class="table__data"><?= $client['type'] ?></td>
+            <td class="table__data"><?= $client['id'] . "/$year" ?></td>
+            <td class="table__data"><?= $client['created'] ?></td>
+            <td class="table__data table__data--green">
+                <a class="table__link" href="/?action=show&id=<?php echo (int)$client['id']; ?>">Pokaż</a>
             </td>
         </tr>
     <?php endforeach ?>

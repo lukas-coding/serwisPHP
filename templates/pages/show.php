@@ -1,32 +1,32 @@
-<table style="width:100%">
-    <tr>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>e-mail</th>
-        <th>nr telefonu</th>
-        <th>Marka</th>
-        <th>Typ</th>
-        <th>Zgoda na utratę danych</th>
-        <th>Koszt naprawy</th>
-        <th>Nr seryjny</th>
-        <th>Nr naprawy</th>
-        <th>Data przyjęcia</th>
+<table class="table">
+    <tr class="table__row">
+        <th class="table__header">Imię</th>
+        <th class="table__header">Nazwisko</th>
+        <th class="table__header">e-mail</th>
+        <th class="table__header">nr telefonu</th>
+        <th class="table__header">Marka</th>
+        <th class="table__header">Typ</th>
+        <th class="table__header">Zgoda na utratę danych</th>
+        <th class="table__header">Koszt naprawy</th>
+        <th class="table__header">Nr seryjny</th>
+        <th class="table__header">Nr naprawy</th>
+        <th class="table__header">Data przyjęcia</th>
     </tr>
     <?php $customer = $viewParams['customer'] ?? [];
     $year = date('Y'); ?>
     <?php if ($customer) : ?>
-        <tr>
-            <td><?= $customer['fname'] ?></td>
-            <td><?= $customer['lname'] ?></td>
-            <td><?= $customer['email'] ?></td>
-            <td><?= $customer['phonenr'] ?></td>
-            <td><?= $customer['brand'] ?></td>
-            <td><?= $customer['type'] ?></td>
-            <td><?= $customer['datasave'] ?></td>
-            <td><?= $customer['cost'] ?></td>
-            <td><?= $customer['serialnr'] ?></td>
-            <td><?= $customer['id'] . "/$year" ?></td>
-            <td><?= $customer['created'] ?></td>
+        <tr class="table__row">
+            <td class="table__data"><?= $customer['fname'] ?></td>
+            <td class="table__data"><?= $customer['lname'] ?></td>
+            <td class="table__data"><?= $customer['email'] ?></td>
+            <td class="table__data"><?= $customer['phonenr'] ?></td>
+            <td class="table__data"><?= $customer['brand'] ?></td>
+            <td class="table__data"><?= $customer['type'] ?></td>
+            <td class="table__data"><?= $customer['datasave'] ?></td>
+            <td class="table__data"><?= $customer['cost'] ?></td>
+            <td class="table__data"><?= $customer['serialnr'] ?></td>
+            <td class="table__data"><?= $customer['id'] . "/$year" ?></td>
+            <td class="table__data"><?= $customer['created'] ?></td>
         </tr>
     <?php endif; ?>
 </table>
@@ -43,7 +43,7 @@
     <a href="#" class="description__link">
         <button class="description__btn">Drukuj</button>
     </a>
-    <a href="#" class="description__link">
+    <a href="/?action=edit&id=<?= $customer['id'] ?>" class="description__link">
         <button class="description__btn">Edytuj</button>
     </a>
     <a href="#" class="description__link">

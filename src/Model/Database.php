@@ -50,8 +50,9 @@ class Database
                 if (empty($email)) {
                     exit('cos poszło nie tak niepoprawny email');
                 } else {
+                    $phone = (int)$data['phone'];
                     $lastId = $this->lastId();
-                    $query = "INSERT INTO customer VALUES(NULL,$lastId,'$data[fname]','$data[lname]','$data[email]',$data[phone])";
+                    $query = "INSERT INTO customer VALUES(NULL,$lastId,'$data[fname]','$data[lname]','$data[email]',$phone)";
                     $result = $this->conn->prepare($query);
                     $result->execute();
                 }
@@ -105,6 +106,10 @@ class Database
         }
 
         return $customer;
+    }
+
+    public function edit()
+    {
     }
 
     private function lastId()
