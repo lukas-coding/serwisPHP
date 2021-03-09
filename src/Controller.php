@@ -6,10 +6,12 @@ namespace App;
 
 use App\View;
 use App\Database;
+use App\Request;
 use Throwable;
 
 require_once("src/View.php");
 require_once("src/Model/Database.php");
+require_once("src/Request.php");
 
 class Controller
 {
@@ -17,6 +19,7 @@ class Controller
     private $getData;
     private $db;
     private $view;
+    private $req;
     private static $config = [];
     private const DEFAULT_ACTION = 'layout';
 
@@ -27,6 +30,7 @@ class Controller
         $this->getData = $getData;
         $this->db = new Database(self::$config['db']);
         $this->view = new View;
+        $this->req = new Request($getData, $postData);
     }
 
     public function run(): void

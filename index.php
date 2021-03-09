@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Controller;
-use Throwable;
-use App\AppException;
-
-
 require_once("src/Exceptions/AppException.php");
 require_once("src/Exceptions/StorageException.php");
 require_once("src/Exceptions/ConfigException.php");
 require_once("src/Exceptions/NotFoundException.php");
 require_once("src/Controller.php");
+require_once("src/Request.php");
 require_once("src/Model/Database.php");
 require_once("src/utils/debug.php");
+
+use App\Controller;
+use App\Request;
+use Throwable;
+use App\AppException;
+
+$request = new Request($_GET, $_POST);
 
 try {
     $dbconfig = require_once("config/config.php");
