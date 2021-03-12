@@ -15,13 +15,18 @@ class Request
         $this->post = $post;
     }
 
+    public function hasPost(): bool
+    {
+        return !empty($this->post);
+    }
+
     public function getParam(string $data, $default = null)
     {
         return $this->get[$data] ?? $default;
     }
 
-    public function postParam(string $data, $default = null)
+    public function postParam()
     {
-        return $this->post[$data] ?? $default;
+        return $this->post ?? null;
     }
 }

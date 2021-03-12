@@ -8,29 +8,30 @@ use App\View;
 use App\Database;
 use App\Request;
 use Throwable;
+use Mpdf\Mpdf;
 
+require_once("/serwisPHP/vendor/autoload.php");
 require_once("src/View.php");
 require_once("src/Model/Database.php");
 require_once("src/Request.php");
 
 class Controller
 {
-    private $postData;
-    private $getData;
+
     private $db;
     private $view;
-    private $req;
+    private  $req;
+    private $mpdf;
     private static $config = [];
     private const DEFAULT_ACTION = 'layout';
 
 
-    public function __construct(array $getData, array $postData)
+    public function __construct(Request $req)
     {
-        $this->postData = $postData;
-        $this->getData = $getData;
+        $this->req = $req;
         $this->db = new Database(self::$config['db']);
         $this->view = new View;
-        $this->req = new Request($getData, $postData);
+        $this->mpdf = new Mpdf();
     }
 
     public function run(): void
@@ -41,8 +42,8 @@ class Controller
         switch ($page) {
             case 'new':
                 try {
-                    if (!empty($this->postData)) {
-                        $this->db->newRepair($this->postData);
+                    if ($this->req->hasPost()) {
+                        $this->db->newRepair($this->req->postParam());
                         header("Location: /?action=description");
                     }
                 } catch (Throwable $e) {
@@ -51,8 +52,8 @@ class Controller
                 break;
             case 'description':
                 try {
-                    if (!empty($this->postData)) {
-                        $this->db->addDescription($this->postData);
+                    if ($this->req->hasPost()) {
+                        $this->db->addDescription($this->req->postParam());
                         header("Location: /?action=addClient");
                     }
                 } catch (Throwable $e) {
@@ -61,8 +62,8 @@ class Controller
                 break;
             case 'addClient':
                 try {
-                    if (!empty($this->postData)) {
-                        $this->db->addCustomer($this->postData);
+                    if ($this->req->hasPost()) {
+                        $this->db->addCustomer($this->req->postParam());
                         header("Location: /?action=create");
                     }
                 } catch (Throwable $e) {
@@ -70,7 +71,7 @@ class Controller
                 }
                 break;
             case 'show':
-                $customerId = (int)$this->getData['id'];
+                $customerId = (int)$this->req->getParam('id');
                 try {
                     $this->db->showCustomer($customerId);
                     $viewParams = [
@@ -82,7 +83,7 @@ class Controller
                 }
                 break;
             case 'edit':
-                $customerId = (int)$this->getData['id'];
+                $customerId = (int)$this->req->getParam('id');
                 try {
                     $this->db->showCustomer($customerId);
                     $viewParams = [
@@ -93,18 +94,26 @@ class Controller
                     exit();
                 }
                 break;
+            case 'print':
+                ob_start();
+                include_once('/serwisPHP/templates/pages/print.php');
+                $html = ob_get_clean();
+                dump($html);
+                $this->mpdf->WriteHTML($html);
+                $this->mpdf->Output();
+                break;
             default:
                 $viewParams = [
                     'client' => $this->db->showList()
                 ];
         }
 
-        $this->view->renderSite($page, $viewParams ?? [], $this->postData);
+        $this->view->renderSite($page, $viewParams ?? []);
     }
 
     public function action(): string
     {
-        return $this->getData['action'] ?? self::DEFAULT_ACTION;
+        return $this->req->getParam('action', self::DEFAULT_ACTION);
     }
 
     public static function initConfiguration(array $config)

@@ -131,6 +131,8 @@ body {
 }
 
 .form__textarea {
+    font-size: 18px;
+    padding: 10px;
     resize: none;
     width: 100%;
 }
