@@ -83,6 +83,18 @@ class Controller extends AbstractController
         $this->view->renderSite('edit', $viewParams ?? []);
     }
 
+    public function deleteAction(): void
+    {
+        try {
+            $customerId = (int)$this->req->getParam('id');
+            $this->db->deleteRepair($customerId);
+            header("Location: /?action=create");
+        } catch (NotFoundException $e) {
+            echo "<h1>" . $e->getMessage() . "</h1>";
+            exit();
+        }
+    }
+
     public function printAction(): void
     {
         ob_start();

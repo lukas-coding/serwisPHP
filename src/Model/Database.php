@@ -112,6 +112,17 @@ class Database
     {
     }
 
+    public function deleteRepair(int $id): void
+    {
+        if (!empty($id)) {
+            $query = "DELETE from hardware WHERE id = $id LIMIT 1";
+            $result = $this->conn->prepare($query);
+            $result->execute();
+        } else {
+            exit('niepoprawne id');
+        }
+    }
+
     private function lastId()
     {
         $lastId = ("SELECT max(id) FROM hardware");
