@@ -46,7 +46,7 @@
     <a href="/?action=edit&id=<?= $customer['id'] ?>" class="description__link">
         <button class="description__btn">Edytuj</button>
     </a>
-    <a href="/?action=delete&id=<?= $customer['id'] ?>" class="description__link">
+    <a onclick="deleteConfirm(<?= $customer['id'] ?>)" href="#" class="description__link">
         <button class="description__btn description__btn--red">Usuń</button>
     </a>
 </section>

@@ -18,6 +18,14 @@ function checkInputLname() {
   }
 }
 
+function deleteConfirm(id){
+ let box = confirm('Czy napewno usunąć naprawę?');
+ if(box){
+  window.location.href=`/?action=delete&id=${id}`; 
+ }
+return box;
+}
+
 
 
 
