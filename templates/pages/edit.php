@@ -1,8 +1,10 @@
 <h2 class="main__h2">Edycja</h2>
-<form class="form" action="/?action=edit" method="POST">
+<?php $customer = $viewParams['customer'] ?? [];
+$year = date('Y'); ?>
+
+<form class="form" action="/?action=editSave&id=<?= $customer['id'] ?>" method="POST">
     <fieldset class="form__fieldset">
-        <?php $customer = $viewParams['customer'] ?? [];
-        $year = date('Y'); ?>
+
         <legend class="form__legend">Edycja parametrów</legend>
         <section class="edit">
             <div class="edit__wrapper">

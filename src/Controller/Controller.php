@@ -83,6 +83,21 @@ class Controller extends AbstractController
         $this->view->renderSite('edit', $viewParams ?? []);
     }
 
+    public function editSaveAction(): void
+    {
+        $id = (int)$this->req->getParam('id');
+        $data = $this->req->postParam();
+        try {
+            if ($this->req->hasPost()) {
+                $this->db->saveEdit($data, $id);
+                header("Location: /?action=show&id=$id");
+            }
+        } catch (Throwable $e) {
+            dump($e);
+            exit();
+        }
+    }
+
     public function deleteAction(): void
     {
         try {

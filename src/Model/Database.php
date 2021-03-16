@@ -108,8 +108,23 @@ class Database
         return $customer;
     }
 
-    public function edit()
+    public function saveEdit(array $data, int $id): void
     {
+
+        $phone = (int)$data['phone'];
+        try {
+            $query = "UPDATE hardware, customer 
+            SET hardware.brand = '$data[brand]', hardware.type = '$data[type]', hardware.datasave = '$data[datasave]', 
+            hardware.serialnr = '$data[serialnr]', hardware.description = '$data[description]', hardware.cost = '$data[cost]', customer.fname = '$data[fname]', customer.lname = '$data[lname]', customer.email = '$data[email]', customer.phonenr = $phone 
+            WHERE hardware.id = customer.id_hardware AND hardware.id = $id";
+            $result = $this->conn->prepare($query);
+            $result->execute();
+        } catch (PDOException $e) {
+            dump($data);
+            var_dump($id);
+            dump($e);
+            exit();
+        }
     }
 
     public function deleteRepair(int $id): void
