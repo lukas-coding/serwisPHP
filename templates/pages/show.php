@@ -40,7 +40,7 @@
     <a href="?action=create" class="description__link">
         <button class="description__btn">Powrót do Listy</button>
     </a>
-    <a href="?action=print" class="description__link">
+    <a href="?action=print&id=<?= $customer['id'] ?>" class="description__link">
         <button class="description__btn">Drukuj</button>
     </a>
     <a href="/?action=edit&id=<?= $customer['id'] ?>" class="description__link">

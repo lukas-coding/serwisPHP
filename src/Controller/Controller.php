@@ -112,10 +112,19 @@ class Controller extends AbstractController
 
     public function printAction(): void
     {
+        $customerId = (int)$this->req->getParam('id');
+        try {
+            $this->db->showCustomer($customerId);
+            $viewParams = [
+                'customer' => $this->db->showCustomer($customerId)
+            ];
+        } catch (NotFoundException $e) {
+            echo "<h1>" . $e->getMessage() . "</h1>";
+            exit();
+        }
         ob_start();
         include_once('/serwisPHP/templates/pages/print.php');
         $html = ob_get_clean();
-        dump($html);
         $this->mpdf->WriteHTML($html);
         $this->mpdf->Output();
         $this->view->renderSite('print', $viewParams ?? []);
