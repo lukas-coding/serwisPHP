@@ -1,5 +1,9 @@
 <?php $customer = $viewParams['customer'] ?? [];
-$year = date('Y'); ?>
+$year = date('Y');
+
+$q = "SELECT avg(slary) FROM employee;"
+
+?>
 
 <!DOCTYPE html>
 <html lang="pl">

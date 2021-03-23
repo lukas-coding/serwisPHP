@@ -35,7 +35,7 @@ class Database
         try {
             $created = date('Y-m-d');
             $query = "INSERT INTO hardware VALUES(NULL,'$data[brand]','$data[type]','$data[datasave]','$data[serialnr]',NULL,NULL,'$created')";
-            $this->conn->exec($query);
+            $this->executeQuery($query);
         } catch (PDOException $e) {
             dump($e);
             exit();
@@ -53,8 +53,7 @@ class Database
                     $phone = (int)$data['phone'];
                     $lastId = $this->lastId();
                     $query = "INSERT INTO customer VALUES(NULL,$lastId,'$data[fname]','$data[lname]','$data[email]',$phone)";
-                    $result = $this->conn->prepare($query);
-                    $result->execute();
+                    $this->executeQuery($query);
                 }
             }
         } catch (PDOException $e) {
@@ -68,8 +67,7 @@ class Database
         try {
             $id = $this->lastId();
             $query = "UPDATE hardware SET description = '$data[description]', cost = '$data[cost]' WHERE id = $id";
-            $result = $this->conn->prepare($query);
-            $result->execute();
+            $this->executeQuery($query);
         } catch (PDOException $e) {
             echo $e;
             exit();
@@ -80,6 +78,7 @@ class Database
     {
         try {
             $query = "SELECT customer.fname, customer.lname,hardware.id, hardware.brand, hardware.type,hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id ORDER BY hardware.id DESC";
+            $result = $this->conn->quote($query);
             $result = $this->conn->prepare($query);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -93,6 +92,7 @@ class Database
     {
         try {
             $query = "SELECT customer.fname, customer.lname, customer.email, customer.phonenr,hardware.id, hardware.brand, hardware.type, hardware.datasave, hardware.serialnr,hardware.description,hardware.cost, hardware.created FROM customer LEFT JOIN hardware ON customer.id_hardware = hardware.id WHERE id = $id ORDER BY hardware.id DESC";
+            $result = $this->conn->quote($query);
             $result = $this->conn->prepare($query);
             $result->execute();
             $customer = $result->fetch(PDO::FETCH_ASSOC);
@@ -117,8 +117,7 @@ class Database
             SET hardware.brand = '$data[brand]', hardware.type = '$data[type]', hardware.datasave = '$data[datasave]', 
             hardware.serialnr = '$data[serialnr]', hardware.description = '$data[description]', hardware.cost = '$data[cost]', customer.fname = '$data[fname]', customer.lname = '$data[lname]', customer.email = '$data[email]', customer.phonenr = $phone 
             WHERE hardware.id = customer.id_hardware AND hardware.id = $id";
-            $result = $this->conn->prepare($query);
-            $result->execute();
+            $this->executeQuery($query);
         } catch (PDOException $e) {
             dump($data);
             var_dump($id);
@@ -131,8 +130,7 @@ class Database
     {
         if (!empty($id)) {
             $query = "DELETE from hardware WHERE id = $id LIMIT 1";
-            $result = $this->conn->prepare($query);
-            $result->execute();
+            $this->executeQuery($query);
         } else {
             exit('niepoprawne id');
         }
@@ -141,9 +139,17 @@ class Database
     private function lastId()
     {
         $lastId = ("SELECT max(id) FROM hardware");
+        $result = $this->conn->quote($lastId);
         $result = $this->conn->prepare($lastId);
         $result->execute();
         return (int)$result->fetchColumn();
+    }
+
+    private function executeQuery(string $query): void
+    {
+        $result = $this->conn->quote($query);
+        $result = $this->conn->prepare($query);
+        $result->execute();
     }
 
     private function connectionDb(array $c): void

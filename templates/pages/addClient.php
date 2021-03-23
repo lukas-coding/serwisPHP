@@ -11,7 +11,7 @@
             <input class="form__input" type="e-mail" name="email" id="email">
             <label class="form__label" for="phone">Nr telefonu:</label>
             <input class="form__input" type="tel" name="phone" id="phone">
-            <input class="form__input form__input--submit" type="submit" value="Zapisz" class="label_submit" onclick="checkInputLname()">
+            <input class="form__input form__input--submit" type="submit" value="Zapisz" class="label_submit" onclick="validateInput('lname')">
         </div>
     </fieldset>
 </form>

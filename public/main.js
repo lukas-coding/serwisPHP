@@ -1,20 +1,10 @@
-function checkInputBrand() {
-    const inputBrand = document.getElementById("brand");
-    if (inputBrand.value === "") {
-        inputBrand.style.backgroundColor = "#e0b4b4";
-      }
-    else{
-        inputBrand.style.backgroundColor = "";
-    }
-}
-
-function checkInputLname() {
-  const inputLname = document.getElementById("lname");
-  if (inputLname.value === "") {
-      inputLname.style.backgroundColor = "#e0b4b4";
+function validateInput(id){
+  const inputBrand = document.getElementById(id);
+  if (inputBrand.value === "") {
+      inputBrand.style.backgroundColor = "#e0b4b4";
     }
   else{
-      inputLname.style.backgroundColor = "";
+      inputBrand.style.backgroundColor = "";
   }
 }
 

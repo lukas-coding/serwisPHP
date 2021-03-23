@@ -23,7 +23,7 @@
             </select>
             <label class="form__label" for="serialnr">S/N:</label>
             <input class="form__input" type="text" name="serialnr" id="serialnr">
-            <input class="form__input form__input--submit" type="submit" value="Dalej" onclick="checkInputBrand()">
+            <input class="form__input form__input--submit" type="submit" value="Dalej" onclick="validateInput('brand')">
         </div>
     </fieldset>
 </form>
