@@ -9,7 +9,9 @@ require_once("src/Request.php");
 require_once("src/utils/debug.php");
 require_once("src/Exceptions/ConfigException.php");
 require_once("src/Exceptions/AppException.php");
+require_once("src/Exceptions/StorageException.php");
 
+use App\StorageException;
 use App\ConfigException;
 use App\AppException;
 use App\Controller;
@@ -25,11 +27,10 @@ try {
     (new Controller($req))->run();
 } catch (AppException $e) {
     echo '<h1 style="text-align: center">' . $e->getMessage() . '</h1>';
-    dump($e);
+} catch (StorageException $e) {
+    echo '<h1 style="text-align: center">' . $e->getMessage() . '</h1>';
 } catch (ConfigException $e) {
     echo '<h1 style="text-align: center">' . $e->getMessage() . '</h1>';
-    dump($e);
 } catch (Throwable $e) {
     echo '<h1 style="text-align: center">Wystąpił błąd w aplikacji</h1>';
-    dump($e);
 }

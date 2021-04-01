@@ -17,9 +17,7 @@
             <ul class="header__list">
                 <li class="header__item"><a class="header__link" href="/">Strona Główna</a></li>
                 <li class="header__item"><a class="header__link" href="/?action=new">Nowa naprawa</a></li>
-                <li class="header__item"><a class="header__link" href="/?action=description">Opis</a></li>
-                <li class="header__item"><a class="header__link" href="/?action=addClient">Dodaj klienta</a></li>
-                <li class="header__item"><a class="header__link" href="/?action=find">Szukaj naprawy</a></li>
+                <!-- <li class="header__item"><a class="header__link" href="/?action=find">Szukaj naprawy</a></li> -->
                 <li class="header__item"><a class="header__link" href="/?action=create">Naprawy w trakcie</a></li>
             </ul>
         </nav>

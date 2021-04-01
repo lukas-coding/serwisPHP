@@ -4,31 +4,17 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\AbstractDatabase;
 use PDO;
-use App\StorageException;
-use App\ConfigException;
 use App\NotFoundException;
 use PDOException;
 
-
+require_once("src/Model/AbstractDatabase.php");
 require_once("src/Exceptions/NotFoundException.php");
 require_once("src/Exceptions/StorageException.php");
 
-class Database
+class Database extends AbstractDatabase
 {
-    private $conn;
-
-    public function __construct(array $dbConfig)
-    {
-        $this->dbConfig = $dbConfig;
-        try {
-            $this->validateDbConfig($dbConfig);
-            $this->connectionDb($dbConfig);
-        } catch (PDOException $e) {
-            throw new StorageException('Błąd!!! Nie można połączyć się z bazą danych.');
-            exit();
-        }
-    }
 
     public function newRepair(array $data): void
     {
@@ -48,7 +34,7 @@ class Database
             if (isset($data['email'])) {
                 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
                 if (empty($email)) {
-                    exit('cos poszło nie tak niepoprawny email');
+                    exit('niepoprawny email');
                 } else {
                     $phone = (int)$data['phone'];
                     $lastId = $this->lastId();
@@ -102,7 +88,7 @@ class Database
         }
 
         if (!$customer) {
-            throw new NotFoundException('Nie ma takiego klienta');
+            throw new NotFoundException('Klient o takim Id nie istnieje');
         }
 
         return $customer;
@@ -119,9 +105,7 @@ class Database
             WHERE hardware.id = customer.id_hardware AND hardware.id = $id";
             $this->executeQuery($query);
         } catch (PDOException $e) {
-            dump($data);
-            var_dump($id);
-            dump($e);
+            echo $e;
             exit();
         }
     }
@@ -133,45 +117,6 @@ class Database
             $this->executeQuery($query);
         } else {
             exit('niepoprawne id');
-        }
-    }
-
-    private function lastId()
-    {
-        $lastId = ("SELECT max(id) FROM hardware");
-        $result = $this->conn->quote($lastId);
-        $result = $this->conn->prepare($lastId);
-        $result->execute();
-        return (int)$result->fetchColumn();
-    }
-
-    private function executeQuery(string $query): void
-    {
-        $result = $this->conn->quote($query);
-        $result = $this->conn->prepare($query);
-        $result->execute();
-    }
-
-    private function connectionDb(array $c): void
-    {
-        $dsn = "mysql:dbname={$c['database']};host={$c['host']}";
-        $this->conn = new PDO(
-            $dsn,
-            $c['user'],
-            $c['password'],
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-        );
-    }
-
-    private function validateDbConfig(array $c): void
-    {
-        if (
-            empty($c['host'])
-            || empty($c['database'])
-            || empty($c['user'])
-            || empty($c['password'])
-        ) {
-            throw new ConfigException('Błąd Konfiguracji Serwera');
         }
     }
 }

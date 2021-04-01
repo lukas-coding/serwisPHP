@@ -29,7 +29,7 @@ abstract class AbstractController
         $this->req = $req;
 
         if (empty(self::$config['db'])) {
-            throw new ConfigException('Błąd konfiguracji');
+            throw new ConfigException('Błąd konfiguracji bazy danych');
             exit();
         }
         $this->db = new Database(self::$config['db']);

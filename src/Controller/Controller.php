@@ -77,7 +77,7 @@ class Controller extends AbstractController
                 'customer' => $this->db->showCustomer($customerId)
             ];
         } catch (NotFoundException $e) {
-            echo "<h1>" . $e->getMessage() . "</h1>";
+            echo '<h1 style="text-align: center">' . $e->getMessage() . '</h1>';
             exit();
         }
         $this->view->renderSite('edit', $viewParams ?? []);
