@@ -1,5 +1,5 @@
-function validateInput(id){
-  const inputBrand = document.getElementById(id);
+function validateInput(inputName){
+  const inputBrand = document.getElementById(inputName);
   if (inputBrand.value === "") {
       inputBrand.style.backgroundColor = "#e0b4b4";
     }
@@ -15,6 +15,8 @@ function deleteConfirm(id){
  }
 return box;
 }
+
+
 
 
 

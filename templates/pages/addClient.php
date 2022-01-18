@@ -8,7 +8,7 @@
             <label class="form__label" for="lname">Nazwisko:</label>
             <input class="form__input" type="text" name="lname" id="lname" required>
             <label class="form__label" for="email">e-Mail:</label>
-            <input class="form__input" type="e-mail" name="email" id="email">
+            <input class="form__input" type="e-mail" name="email" id="email" required>
             <label class="form__label" for="phone">Nr telefonu:</label>
             <input class="form__input" type="tel" name="phone" id="phone">
             <input class="form__input form__input--submit" type="submit" value="Zapisz" class="label_submit" onclick="validateInput('lname')">

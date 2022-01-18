@@ -28,6 +28,18 @@ class Database extends AbstractDatabase
         }
     }
 
+    public function addDescription(array $data): void
+    {
+        try {
+            $id = $this->lastId();
+            $query = "UPDATE hardware SET description = '$data[description]', cost = '$data[cost]' WHERE id = $id";
+            $this->executeQuery($query);
+        } catch (PDOException $e) {
+            echo $e;
+            exit();
+        }
+    }
+
     public function addCustomer(array $data): void
     {
         try {
@@ -44,18 +56,6 @@ class Database extends AbstractDatabase
             }
         } catch (PDOException $e) {
             dump($e);
-            exit();
-        }
-    }
-
-    public function addDescription(array $data): void
-    {
-        try {
-            $id = $this->lastId();
-            $query = "UPDATE hardware SET description = '$data[description]', cost = '$data[cost]' WHERE id = $id";
-            $this->executeQuery($query);
-        } catch (PDOException $e) {
-            echo $e;
             exit();
         }
     }
@@ -86,11 +86,9 @@ class Database extends AbstractDatabase
             dump($e);
             exit();
         }
-
         if (!$customer) {
             throw new NotFoundException('Klient o takim Id nie istnieje');
         }
-
         return $customer;
     }
 

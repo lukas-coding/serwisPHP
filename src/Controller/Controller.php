@@ -7,6 +7,7 @@ namespace App;
 require_once("src/Controller/AbstractController.php");
 
 use App\AbstractController;
+use Exception;
 use Throwable;
 
 class Controller extends AbstractController
